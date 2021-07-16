@@ -7,5 +7,17 @@ from .forms import SearchForm
 
 
 def index(request):
-    form = SearchForm()
+    form = SearchForm(request.POST or None)
+
+    if form.is_valid():
+        print(form.cleaned_data)
+        print(form.cleaned_data.get('name'))
+
+
+
+    # if request.method == "POST":
+    #     print(request.POST)
+    #     print(request.POST.get('username'))
+    # elif request.method == 'GET':
+    #     print(request.GET)
     return render(request, 'index.html', {'form': form})
